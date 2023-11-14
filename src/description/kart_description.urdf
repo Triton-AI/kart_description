@@ -56,7 +56,7 @@
         <origin xyz="0.0 0.0 ${-(wheel_radius+wheel_zoff)}" rpy="0 0 0"/>
     </joint>
 
-    <!-- Back and Front wheel macros -->
+    <!-- Back wheel macros -->
     <xacro:macro name="wheel" params="prefix x_reflect y_reflect parent_link">
         <link name="${prefix}_link">
             <visual>
@@ -85,18 +85,36 @@
             <axis xyz="0 1 0"/>
         </joint>
     </xacro:macro>
+    
+    <!-- Create back wheels -->
+    <xacro:wheel prefix="drivewhl_rl" x_reflect="-1" y_reflect="1" parent_link="base_link"/>
+    <xacro:wheel prefix="drivewhl_rr" x_reflect="-1" y_reflect="-1" parent_link="base_link"/>
+
+    
+    
+   <!-- FRONT WHEELS-->
+   <link name="steering_link">
+        <origin xyz="${wheel_xoff} 0 ${-wheel_zoff}" rpy="0 0 0"/>
+    </link>
+
+    <joint name="steering_joint" type="revolute">
+        <parent link="base_link"/>
+        <child link="steering_link"/>
+        <axis xyz="0 0 1" rpy="0 0 0" />
+        <limit effort="100" velocity="1" lower="-1" upper="1"/> 
+        <origin xyz="${wheel_xoff} 0 ${-wheel_zoff}" rpy="0 0 0"/>
+    </joint>
 
     <xacro:macro name="wheel_steer" params="prefix x_reflect y_reflect parent_link">
-        <joint name="${prefix}_steering_joint" type="revolute">
-            <parent link="base_link"/>
-            <child link="${parent_link}"/>
+        <link name="${prefix}_wheel_hinge_link"/>
+        <joint name="${prefix}_wheel_hinge_joint" type="revolute">
+            <parent link="${parent_link}"/>
+            <child link="${prefix}_wheel_hinge_link"/>
             <axis xyz="0 0 1" rpy="0 0 0" />
             <limit effort="100" velocity="1" lower="-1" upper="1"/> 
-            <dynamics damping="0.0" friction="0.0"/> 
-            <origin xyz="${wheel_xoff} ${y_reflect*(base_width/2+wheel_ygap)} ${-wheel_zoff}" rpy="0 0 0"/>
+            <origin xyz="0 ${y_reflect*(base_width/2+wheel_ygap)} 0"/>
         </joint>
-
-        <link name="${prefix}_link">
+        <link name="${prefix}_wheel_link">
             <visual>
                 <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
                 <geometry>
@@ -115,21 +133,15 @@
         
               <xacro:cylinder_inertia m="0.5" r="${wheel_radius}" h="${wheel_width}"/>        
         </link>
-
-        <joint name="${prefix}_joint" type="continuous">
-            <parent link="${parent_link}"/>
-            <child link="${prefix}_link"/>
+        <joint name="${prefix}_wheel_joint" type="continuous">
+            <parent link="${prefix}_wheel_hinge_link"/>
+            <child link="${prefix}_wheel_link"/>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <axis xyz="0 1 0"/>
         </joint>
     </xacro:macro>
-    
-    <!-- Create wheels -->
-    <link name="left_steering_link"/>
-    <link name="right_steering_link"/>
 
-    <xacro:wheel prefix="drivewhl_rl" x_reflect="-1" y_reflect="1" parent_link="base_link"/>
-    <xacro:wheel prefix="drivewhl_rr" x_reflect="-1" y_reflect="-1" parent_link="base_link"/>
-    <xacro:wheel_steer prefix="drivewhl_fl" x_reflect="1" y_reflect="1" parent_link="left_steering_link"/>
-    <xacro:wheel_steer prefix="drivewhl_fr" x_reflect="1" y_reflect="-1" parent_link="right_steering_link"/>
+    <xacro:wheel_steer prefix="front_left" x_reflect="1" y_reflect="-1" parent_link="steering_link"/>
+    <xacro:wheel_steer prefix="front_right" x_reflect="1" y_reflect="1" parent_link="steering_link"/>
+
 </robot>
