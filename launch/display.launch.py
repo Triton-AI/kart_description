@@ -5,7 +5,7 @@ import os
 
 def generate_launch_description():
     pkg_share = launch_ros.substitutions.FindPackageShare(package='kart_description').find('kart_description')
-    default_model_path = os.path.join(pkg_share, 'src/description/kart_description.urdf')
+    default_model_path = os.path.join(pkg_share, 'src/description/main.urdf')
     default_rviz_config_path = os.path.join(pkg_share, 'rviz/urdf_config.rviz')
 
     robot_state_publisher_node = launch_ros.actions.Node(

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot name="ucsd_kart" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- Define robot constants -->
+    <xacro:property name="base_width" value="0.31"/>
+    <xacro:property name="base_length" value="1.00"/>
+    <xacro:property name="base_height" value="0.18"/>
+
+    <xacro:property name="wheel_radius" value="0.10"/>
+    <xacro:property name="wheel_width" value="0.04"/>
+    <xacro:property name="wheel_ygap" value="0.025"/>
+    <xacro:property name="wheel_zoff" value="0.05"/>
+    <xacro:property name="wheel_xoff" value="${base_length/2-0.15}"/>
+
+    <!-- Include files-->
+    <xacro:include filename="inertia_macros.xacro"/>
+    <xacro:include filename="imu_description.xacro"/>
+    <xacro:include filename="ackermann.xacro"/>
+    
+</robot>
