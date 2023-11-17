@@ -33,10 +33,10 @@
     <!-- Create back wheels -->
     <xacro:wheel prefix="rear_left_wheel" x_reflect="-1" y_reflect="1" parent_link="base_link"/>
     <xacro:wheel prefix="rear_right_wheel" x_reflect="-1" y_reflect="-1" parent_link="base_link"/>
-    <xacro:wheel prefix="front_left_wheel" x_reflect="1" y_reflect="1" parent_link="base_link"/>
-    <xacro:wheel prefix="front_right_wheel" x_reflect="1" y_reflect="-1" parent_link="base_link"/>
+    <!-- <xacro:wheel prefix="front_left_wheel" x_reflect="1" y_reflect="1" parent_link="base_link"/>
+    <xacro:wheel prefix="front_right_wheel" x_reflect="1" y_reflect="-1" parent_link="base_link"/> -->
     
-   <!-- FRONT WHEELS
+   <!-- FRONT WHEELS -->
    <link name="steering_link">
         <origin xyz="${wheel_xoff} 0 ${-wheel_zoff}" rpy="0 0 0"/>
     </link>
@@ -125,5 +125,5 @@
         
         <odometry_frame>odom_demo</odometry_frame>
         <robot_base_frame>chassis</robot_base_frame>
-    </plugin> -->
+    </plugin>
 </robot>
