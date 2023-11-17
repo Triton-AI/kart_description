@@ -1,33 +1,5 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
-    <!-- Robot Base -->
-    <link name="base_link">
-        <visual>
-            <geometry>
-                <box size="${base_length} ${base_width} ${base_height}"/>
-            </geometry>
-            <material name="Cyan">
-                <color rgba="0 1.0 1.0 1.0"/>
-            </material>
-        </visual>
-        <collision>
-            <geometry>
-              <box size="${base_length} ${base_width} ${base_height}"/>
-            </geometry>
-          </collision>
-      
-          <xacro:box_inertia m="15" w="${base_width}" d="${base_length}" h="${base_height}"/>      
-    </link>
-
-    <!-- Robot Footprint -->
-    <link name="base_footprint"/>
-
-    <joint name="base_joint" type="fixed">
-        <parent link="base_link"/>
-        <child link="base_footprint"/>
-        <origin xyz="0.0 0.0 ${-(wheel_radius+wheel_zoff)}" rpy="0 0 0"/>
-    </joint>
-
     <!-- Back wheel macros -->
     <xacro:macro name="wheel" params="prefix x_reflect y_reflect parent_link">
         <link name="${prefix}_link">

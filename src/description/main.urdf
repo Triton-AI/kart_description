@@ -12,9 +12,39 @@
     <xacro:property name="wheel_zoff" value="0.05"/>
     <xacro:property name="wheel_xoff" value="${base_length/2-0.15}"/>
 
-    <!-- Include files-->
+    <!-- Robot Base needs Inertia-->
     <xacro:include filename="inertia_macros.xacro"/>
+
+    <!-- Robot Base -->
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="${base_length} ${base_width} ${base_height}"/>
+            </geometry>
+            <material name="Cyan">
+                <color rgba="0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+              <box size="${base_length} ${base_width} ${base_height}"/>
+            </geometry>
+          </collision>
+      
+          <xacro:box_inertia m="15" w="${base_width}" d="${base_length}" h="${base_height}"/>      
+    </link>
+
+    <!-- Robot Footprint -->
+    <link name="base_footprint"/>
+
+    <joint name="base_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="base_footprint"/>
+        <origin xyz="0.0 0.0 ${-(wheel_radius+wheel_zoff)}" rpy="0 0 0"/>
+    </joint>
+
+    <!-- Include files-->
     <xacro:include filename="imu_description.xacro"/>
-    <xacro:include filename="ackermann.xacro"/>
+    <xacro:include filename="differential.xacro"/>
     
 </robot>
