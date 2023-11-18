@@ -45,6 +45,6 @@
 
     <!-- Include files-->
     <xacro:include filename="imu_description.xacro"/>
-    <xacro:include filename="differential.xacro"/>
+    <xacro:include filename="ackermann.xacro"/>
     
 </robot>
