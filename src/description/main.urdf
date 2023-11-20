@@ -3,7 +3,7 @@
 
     <!-- Define robot constants -->
     <xacro:property name="base_width" value="0.31"/>
-    <xacro:property name="base_length" value="1.00"/>
+    <xacro:property name="base_length" value="0.5"/>
     <xacro:property name="base_height" value="0.18"/>
 
     <xacro:property name="wheel_radius" value="0.10"/>
@@ -31,7 +31,7 @@
             </geometry>
           </collision>
       
-          <xacro:box_inertia m="15" w="${base_width}" d="${base_length}" h="${base_height}"/>      
+          <xacro:box_inertia m="30" w="${base_width}" d="${base_length}" h="${base_height}"/>      
     </link>
 
     <!-- Robot Footprint -->
@@ -47,5 +47,6 @@
     <xacro:include filename="imu_description.xacro"/>
     <xacro:include filename="differential.xacro"/>
     <xacro:include filename="camera.xacro"/>
+    <xacro:include filename="lidar.xacro"/>
     
 </robot>

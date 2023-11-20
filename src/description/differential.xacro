@@ -59,10 +59,11 @@
     <xacro:sphere_inertia m="0.5" r="${(wheel_radius+wheel_zoff-(base_height/2))}"/>
   </link>
 
-  <joint name="caster_joint" type="fixed">
+  <joint name="caster_joint" type="continuous">
     <parent link="base_link"/>
     <child link="front_caster"/>
     <origin xyz="${caster_xoff} 0.0 ${-(base_height/2)}" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
   </joint>
 
   <gazebo>
