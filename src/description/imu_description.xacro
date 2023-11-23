@@ -19,7 +19,7 @@
     <joint name="imu_joint" type="fixed">
         <parent link="base_link"/>
         <child link="imu_link"/>
-        <origin xyz="${-1*wheel_xoff} 0 ${base_height/2}"/>
+        <origin xyz="${-1*wheel_xoff} 0 ${base_height/2-.05}"/>
     </joint>
       
     <gazebo reference="imu_link">
