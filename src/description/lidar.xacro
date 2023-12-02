@@ -39,8 +39,8 @@
             <vertical>
             <samples>65</samples>
             <resolution>1.000000</resolution>
-            <min_angle>0.3926991</min_angle>
-            <max_angle>-0.7417649</max_angle>
+            <min_angle>-0.3926991</min_angle>
+            <max_angle>0.7417649</max_angle>
             </vertical>
             <horizontal>
             <samples>360</samples>
